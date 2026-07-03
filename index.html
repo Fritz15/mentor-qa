@@ -29,63 +29,78 @@
     font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
   ::selection{background:rgba(76,155,224,.22)}
 
-  .shell{display:grid;grid-template-columns:1fr;min-height:100vh}
-  @media(min-width:1000px){.shell{grid-template-columns:minmax(380px,40%) 1fr}}
+  /* Wizard: a página nunca rola. Cada coluna cuida do próprio overflow. */
+  .shell{display:grid;grid-template-columns:1fr;height:100vh;height:100dvh;overflow:hidden}
+  @media(min-width:1000px){.shell{grid-template-columns:minmax(340px,38%) 1fr}}
 
   /* ===== LEFT PANEL ===== */
   .aside{position:relative;color:var(--on-dark);overflow:hidden;
     background:radial-gradient(120% 80% at 100% 0%,rgba(76,155,224,.16),transparent 55%),
       linear-gradient(165deg,var(--navy) 0%,var(--ink) 100%);
-    padding:clamp(28px,4vw,52px);display:flex;flex-direction:column;gap:26px}
-  @media(min-width:1000px){.aside{position:sticky;top:0;height:100vh;justify-content:space-between}}
+    padding:clamp(22px,3vw,40px);display:flex;flex-direction:column;gap:clamp(16px,2.4vh,26px)}
+  @media(min-width:1000px){.aside{height:100vh;height:100dvh;justify-content:space-between}}
   .aside::before{content:'';position:absolute;inset:0;pointer-events:none;opacity:.5;
     background-image:linear-gradient(rgba(255,255,255,.028) 1px,transparent 1px);
     background-size:100% 46px;mask-image:linear-gradient(180deg,transparent,#000 12%,#000 70%,transparent)}
-  .aside::after{content:'';position:absolute;width:340px;height:340px;left:-120px;bottom:-120px;border-radius:999px;
+  .aside::after{content:'';position:absolute;width:300px;height:300px;left:-120px;bottom:-120px;border-radius:999px;
     background:radial-gradient(circle,rgba(76,155,224,.20),transparent 70%);filter:blur(30px);pointer-events:none}
   .aside > *{position:relative;z-index:1}
 
   .brand{display:flex;align-items:center;gap:12px}
-  .brand-mark{width:34px;height:34px;border-radius:8px;background:linear-gradient(140deg,var(--accent),var(--accent-deep));display:grid;place-items:center;box-shadow:0 6px 16px -8px rgba(76,155,224,.7)}
-  .brand-mark span{width:14px;height:14px;border:2.5px solid #fff;border-radius:3px;border-right-color:transparent;transform:rotate(-45deg)}
+  .brand-mark{width:32px;height:32px;border-radius:8px;background:linear-gradient(140deg,var(--accent),var(--accent-deep));display:grid;place-items:center;box-shadow:0 6px 16px -8px rgba(76,155,224,.7)}
+  .brand-mark span{width:13px;height:13px;border:2.5px solid #fff;border-radius:3px;border-right-color:transparent;transform:rotate(-45deg)}
   .brand-txt{display:flex;flex-direction:column;line-height:1.2}
-  .brand-name{font-family:'Archivo',sans-serif;font-weight:700;font-size:16px;letter-spacing:.01em;color:#fff}
-  .brand-sub{font-size:11.5px;color:var(--on-dark-mut);letter-spacing:.03em}
+  .brand-name{font-family:'Archivo',sans-serif;font-weight:700;font-size:15.5px;letter-spacing:.01em;color:#fff}
+  .brand-sub{font-size:11px;color:var(--on-dark-mut);letter-spacing:.03em}
 
   .aside-lead{max-width:32ch}
-  .kicker{display:inline-flex;align-items:center;gap:9px;font-family:'Archivo',sans-serif;font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
-  .kicker::before{content:'';width:26px;height:2px;background:var(--accent);border-radius:2px}
-  .aside h1{font-family:'Archivo',sans-serif;font-weight:700;font-size:clamp(28px,3.4vw,42px);line-height:1.1;letter-spacing:-.02em;color:#fff;margin:20px 0 0}
-  .aside-sub{font-size:15px;line-height:1.62;color:var(--on-dark-mut);margin:16px 0 0}
+  .kicker{display:inline-flex;align-items:center;gap:9px;font-family:'Archivo',sans-serif;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+  .kicker::before{content:'';width:24px;height:2px;background:var(--accent);border-radius:2px}
+  .aside h1{font-family:'Archivo',sans-serif;font-weight:700;font-size:clamp(23px,2.5vw,32px);line-height:1.12;letter-spacing:-.02em;color:#fff;margin:14px 0 0}
+  .aside-sub{font-size:13.5px;line-height:1.55;color:var(--on-dark-mut);margin:12px 0 0}
 
   .stepper{list-style:none;padding:0;margin:0;display:flex;flex-direction:column}
-  .stepper li{display:flex;gap:15px;align-items:flex-start;padding:0 0 20px;position:relative}
+  .stepper li{display:flex;gap:14px;align-items:flex-start;padding:0 0 clamp(12px,2vh,20px);position:relative}
   .stepper li:last-child{padding-bottom:0}
-  .stepper li:not(:last-child)::before{content:'';position:absolute;left:16px;top:34px;bottom:2px;width:1.5px;background:rgba(255,255,255,.12)}
-  .stepper li.on:not(:last-child)::before{background:linear-gradient(var(--accent),rgba(255,255,255,.12))}
-  .st-num{flex:none;width:33px;height:33px;border-radius:9px;display:grid;place-items:center;font-family:'Archivo',sans-serif;font-weight:700;font-size:14px;
-    background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);color:var(--on-dark-mut)}
+  .stepper li:not(:last-child)::before{content:'';position:absolute;left:16px;top:32px;bottom:2px;width:1.5px;background:rgba(255,255,255,.12)}
+  .stepper li.done:not(:last-child)::before,.stepper li.on:not(:last-child)::before{background:linear-gradient(var(--accent),rgba(255,255,255,.12))}
+  .st-num{flex:none;width:32px;height:32px;border-radius:9px;display:grid;place-items:center;font-family:'Archivo',sans-serif;font-weight:700;font-size:13.5px;
+    background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);color:var(--on-dark-mut);transition:.2s}
   .stepper li.on .st-num{background:linear-gradient(140deg,var(--accent),var(--accent-deep));border-color:transparent;color:#fff;box-shadow:0 8px 18px -8px rgba(76,155,224,.8)}
-  .st-body{padding-top:5px;display:flex;flex-direction:column;gap:3px}
-  .st-t{font-family:'Archivo',sans-serif;font-weight:600;font-size:15px;color:#fff;line-height:1.2}
-  .st-d{font-size:12.5px;color:var(--on-dark-faint);margin-top:3px}
+  .stepper li.done .st-num{background:rgba(76,155,224,.16);border-color:rgba(76,155,224,.45);color:var(--accent)}
+  .st-body{padding-top:4px;display:flex;flex-direction:column;gap:2px}
+  .st-t{font-family:'Archivo',sans-serif;font-weight:600;font-size:14px;color:#fff;line-height:1.2}
+  .st-d{font-size:12px;color:var(--on-dark-faint);margin-top:2px}
   .stepper li.on .st-d{color:var(--on-dark-mut)}
+  /* contador de situação, exibido só quando a etapa 04 está ativa */
+  .st-count{display:none;font-family:'Archivo',sans-serif;font-size:11.5px;font-weight:600;color:var(--accent);margin-top:5px;letter-spacing:.02em}
+  .stepper li.on .st-count.show{display:block}
 
-  .aside-foot{display:flex;flex-direction:column;gap:14px;border-top:1px solid rgba(255,255,255,.10);padding-top:22px}
-  .conf{display:flex;gap:11px;align-items:flex-start;font-size:12.5px;line-height:1.55;color:var(--on-dark-mut)}
+  .aside-foot{display:flex;flex-direction:column;gap:12px;border-top:1px solid rgba(255,255,255,.10);padding-top:clamp(14px,2vh,20px)}
+  .conf{display:flex;gap:11px;align-items:flex-start;font-size:12px;line-height:1.5;color:var(--on-dark-mut)}
   .conf svg{flex:none;color:var(--accent);margin-top:1px}
   .conf strong{color:#fff;font-weight:600}
-  .aside-meta{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:12px;color:var(--on-dark-faint)}
+  .aside-meta{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:11.5px;color:var(--on-dark-faint)}
   .aside-meta span{display:inline-flex;align-items:center;gap:7px}
   .aside-meta .d{width:4px;height:4px;border-radius:999px;background:var(--accent)}
 
-  /* ===== RIGHT / FORM ===== */
-  .main{padding:clamp(30px,5vw,68px) clamp(20px,5vw,72px) 90px;min-width:0}
-  .main-inner{max-width:640px;margin:0 auto}
+  /* ===== RIGHT / FORM (WIZARD) ===== */
+  .main{min-width:0;height:100vh;height:100dvh;display:flex;flex-direction:column;overflow:hidden}
+  .form{display:flex;flex-direction:column;height:100%;min-height:0}
 
-  .sec{padding:clamp(26px,4vw,42px) 0;border-bottom:1px solid var(--line)}
-  .sec:first-child{padding-top:clamp(6px,2vw,14px)}
-  .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:24px}
+  /* área da pergunta atual: rola só por dentro se a resposta for muito grande */
+  .stage{flex:1 1 auto;min-height:0;overflow-y:auto;
+    padding:clamp(26px,4.5vw,60px) clamp(20px,5vw,72px) clamp(20px,3vw,34px)}
+  .stage-inner{max-width:640px;margin:0 auto;width:100%}
+
+  /* cada passo do wizard */
+  .step{display:none;animation:stepIn .32s cubic-bezier(.22,.61,.36,1)}
+  .step.active{display:block}
+  @keyframes stepIn{from{opacity:0;transform:translateX(26px)}to{opacity:1;transform:translateX(0)}}
+  .step.back{animation:stepInBack .32s cubic-bezier(.22,.61,.36,1)}
+  @keyframes stepInBack{from{opacity:0;transform:translateX(-26px)}to{opacity:1;transform:translateX(0)}}
+
+  .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:clamp(18px,3vw,28px)}
   .sec-no{font-family:'Archivo',sans-serif;font-weight:700;font-size:clamp(30px,4vw,42px);line-height:1;letter-spacing:-.02em;color:transparent;-webkit-text-stroke:1.5px #C4D0DC;flex:none}
   .sec-htext{display:flex;flex-direction:column;gap:5px}
   .sec-title{font-family:'Archivo',sans-serif;font-weight:700;font-size:clamp(20px,2.6vw,25px);letter-spacing:-.02em;margin:0;color:var(--ink)}
@@ -102,7 +117,7 @@
   .input::placeholder{color:#9AA8B6}
   .input:hover{border-color:#B9C6D3}
   .input:focus{outline:none;border-color:var(--accent-deep);box-shadow:0 0 0 3px var(--ring)}
-  textarea.input{resize:vertical;min-height:130px;line-height:1.6}
+  textarea.input{resize:vertical;min-height:120px;line-height:1.6}
   .helper{font-size:12.5px;color:var(--faint);line-height:1.5}
 
   /* estados de erro */
@@ -139,7 +154,7 @@
   label.opt:has(input:checked) .opt-check::after{opacity:1;transform:scale(1)}
   label.opt:has(input:focus-visible){outline:2px solid var(--accent-deep);outline-offset:3px}
 
-  /* checkbox múltiplo (tipos de teste) — pílulas */
+  /* checkbox múltiplo (tipos de teste): pílulas */
   .chk-grid{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
   label.chk{display:inline-flex;align-items:center;gap:9px;padding:10px 15px;border:1px solid #D5DEE7;border-radius:999px;background:#fff;cursor:pointer;transition:border-color .15s,transform .14s,box-shadow .15s;font-size:14px;font-weight:600;color:var(--muted)}
   label.chk:hover{border-color:#AEC2D6;transform:translateY(-1px);box-shadow:var(--shadow-sm)}
@@ -151,24 +166,41 @@
   label.chk:has(input:focus-visible){outline:2px solid var(--accent-deep);outline-offset:3px}
   .chk input{position:absolute;opacity:0;width:0;height:0}
 
-  .submit-row{display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between;padding-top:clamp(24px,4vw,34px)}
-  .submit-note{font-size:13.5px;color:var(--muted);line-height:1.55;max-width:44ch;margin:0}
-  .submit-note strong{color:var(--ink);font-weight:600}
-  .btn{font:inherit;font-weight:600;cursor:pointer;border:0;border-radius:10px;transition:background .15s,box-shadow .15s,transform .12s}
-  .btn-primary{font-family:'Archivo',sans-serif;font-size:15px;letter-spacing:.01em;color:#fff;background:linear-gradient(140deg,var(--accent-deep),var(--accent-ink));padding:15px 30px;box-shadow:0 12px 26px -12px rgba(29,111,199,.7);white-space:nowrap;display:inline-flex;align-items:center;gap:10px}
+  /* campo "Qual?" revelado ao marcar Outro */
+  .outro-wrap{display:none;margin-top:16px}
+  .outro-wrap.show{display:block;animation:stepIn .25s ease}
+
+  /* ===== BARRA DE NAVEGAÇÃO (rodapé fixo do wizard) ===== */
+  .navbar{flex:none;border-top:1px solid var(--line);background:rgba(255,255,255,.86);backdrop-filter:blur(6px);
+    padding:clamp(14px,2vw,20px) clamp(20px,5vw,72px)}
+  .navbar-inner{max-width:640px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .nav-progress{display:flex;flex-direction:column;gap:8px;flex:1 1 auto;min-width:0}
+  .nav-progress-txt{font-family:'Archivo',sans-serif;font-size:12px;font-weight:600;color:var(--muted);letter-spacing:.02em}
+  .nav-progress-txt b{color:var(--ink)}
+  .nav-bar-track{height:5px;border-radius:999px;background:var(--line);overflow:hidden;max-width:220px}
+  .nav-bar-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--accent),var(--accent-deep));width:0;transition:width .35s cubic-bezier(.22,.61,.36,1)}
+  .nav-actions{display:flex;align-items:center;gap:12px;flex:none}
+
+  .form-error{display:none;max-width:640px;margin:0 auto 12px;background:var(--warn-bg);border:1px solid var(--warn-line);color:var(--warn);border-radius:11px;padding:11px 15px;font-size:13px;font-weight:600;line-height:1.5}
+  .form-error.show{display:block}
+
+  .btn{font:inherit;font-weight:600;cursor:pointer;border:0;border-radius:10px;transition:background .15s,box-shadow .15s,transform .12s,opacity .15s}
+  .btn-primary{font-family:'Archivo',sans-serif;font-size:14.5px;letter-spacing:.01em;color:#fff;background:linear-gradient(140deg,var(--accent-deep),var(--accent-ink));padding:13px 26px;box-shadow:0 12px 26px -12px rgba(29,111,199,.7);white-space:nowrap;display:inline-flex;align-items:center;gap:10px}
   .btn-primary:hover{transform:translateY(-1px);box-shadow:0 16px 32px -12px rgba(29,111,199,.8)}
   .btn-primary:active{transform:translateY(0)}
   .btn-primary[disabled]{opacity:.72;cursor:progress;transform:none}
   .btn-primary svg{flex:none}
+  .btn-back{font-family:'Archivo',sans-serif;font-size:14px;font-weight:600;color:var(--muted);background:transparent;border:1px solid #C7D5E2;padding:12px 20px;border-radius:10px;display:inline-flex;align-items:center;gap:8px}
+  .btn-back:hover{color:var(--ink);border-color:#AEC2D6;background:#F2F7FB}
+  /* garante que [hidden] vença o display:inline-flex dos botões */
+  .btn[hidden]{display:none!important}
   .spinner{width:16px;height:16px;border:2.4px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;display:none}
   .btn-primary.loading .spinner{display:block}
   .btn-primary.loading .arrow{display:none}
   @keyframes spin{to{transform:rotate(360deg)}}
 
-  .form-error{display:none;margin-top:18px;background:var(--warn-bg);border:1px solid var(--warn-line);color:var(--warn);border-radius:11px;padding:13px 16px;font-size:13.5px;font-weight:600;line-height:1.55}
-  .form-error.show{display:block}
-
-  .sucesso{margin-top:26px;border:1px solid var(--line);background:#fff;border-radius:14px;padding:clamp(20px,3.5vw,28px);box-shadow:var(--shadow-md)}
+  /* ===== TELA DE SUCESSO ===== */
+  .sucesso{border:1px solid var(--line);background:#fff;border-radius:14px;padding:clamp(20px,3.5vw,28px);box-shadow:var(--shadow-md)}
   .sucesso-head{display:flex;gap:14px;align-items:flex-start;margin-bottom:18px}
   .sucesso-badge{flex:none;width:34px;height:34px;border-radius:9px;background:linear-gradient(140deg,var(--accent),var(--accent-deep));color:#fff;display:grid;place-items:center;box-shadow:0 8px 18px -8px rgba(76,155,224,.7)}
   .sucesso h3{font-family:'Archivo',sans-serif;font-weight:700;font-size:18px;margin:0;letter-spacing:-.01em;color:var(--ink)}
@@ -178,11 +210,19 @@
   .btn-ghost{font-family:'Archivo',sans-serif;font-size:14px;font-weight:600;color:var(--accent-ink);background:#fff;border:1px solid #C7D5E2;padding:11px 20px;border-radius:9px;cursor:pointer}
   .btn-ghost:hover{background:#F2F7FB;border-color:#AEC2D6}
 
-  .foot{margin-top:36px;font-size:11.5px;color:var(--faint);line-height:1.6}
+  .foot{margin-top:22px;font-size:11.5px;color:var(--faint);line-height:1.6}
   .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
   a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--accent-deep);outline-offset:2px}
   @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+  /* Em telas curtas / mobile o painel some do topo pra não roubar altura do wizard */
+  @media(max-width:999px){
+    .aside{gap:14px;padding:20px}
+    .aside .stepper,.aside .aside-foot{display:none}
+    .aside h1{font-size:21px;margin-top:10px}
+    .aside-sub{display:none}
+  }
 </style>
 </head>
 <body>
@@ -199,26 +239,26 @@
 
     <div class="aside-lead">
       <span class="kicker">Diagnóstico de Carreira · QA</span>
-      <h1>Onde você está hoje — e para onde vamos nos próximos 3 meses.</h1>
-      <p class="aside-sub">Um check-in de aproximadamente 12 minutos. A partir das suas respostas, um mentor elabora o seu Plano de Desenvolvimento Individual.</p>
+      <h1>Onde você está hoje, e para onde vamos nos próximos 3 meses.</h1>
+      <p class="aside-sub">Um check-in de cerca de 12 minutos. A partir das suas respostas, um mentor elabora o seu Plano de Desenvolvimento Individual.</p>
     </div>
 
-    <ol class="stepper" aria-hidden="true">
-      <li class="on">
+    <ol class="stepper" id="stepper" aria-hidden="true">
+      <li class="on" data-stage="1">
         <span class="st-num">01</span>
         <span class="st-body"><span class="st-t">Sobre você</span><span class="st-d">Quem é e onde atua</span></span>
       </li>
-      <li>
+      <li data-stage="2">
         <span class="st-num">02</span>
         <span class="st-body"><span class="st-t">Seu perfil hoje</span><span class="st-d">Senioridade e ferramentas</span></span>
       </li>
-      <li>
+      <li data-stage="3">
         <span class="st-num">03</span>
         <span class="st-body"><span class="st-t">Para onde quer ir</span><span class="st-d">Objetivo e tempo de estudo</span></span>
       </li>
-      <li>
+      <li data-stage="4">
         <span class="st-num">04</span>
-        <span class="st-body"><span class="st-t">Como você pensa</span><span class="st-d">10 situações do dia a dia</span></span>
+        <span class="st-body"><span class="st-t">Como você pensa</span><span class="st-d">10 situações do dia a dia</span><span class="st-count" id="st-count">Situação 1 de 10</span></span>
       </li>
     </ol>
 
@@ -234,274 +274,319 @@
     </div>
   </aside>
 
-  <!-- ===================== FORM ===================== -->
+  <!-- ===================== FORM / WIZARD ===================== -->
   <main class="main">
-    <form class="main-inner" id="form" novalidate>
+    <form class="form" id="form" novalidate>
 
-      <!-- ============ SEÇÃO 01 · SOBRE VOCÊ ============ -->
-      <section class="sec">
-        <div class="sec-head">
-          <span class="sec-no" aria-hidden="true">01</span>
-          <div class="sec-htext">
-            <h2 class="sec-title">Sobre você</h2>
-            <p class="sec-desc">Só o básico para o mentor saber com quem está falando e devolver o seu PDI.</p>
-          </div>
-        </div>
+      <!-- área rolável só por dentro da pergunta atual -->
+      <div class="stage">
+        <div class="stage-inner">
 
-        <div class="field" data-field>
-          <label for="codigo">Código de acesso<span class="req" aria-hidden="true">*</span></label>
-          <input class="input" id="codigo" name="codigo" type="text" autocomplete="off" placeholder="O código que você recebeu no convite">
-          <span class="helper">Este formulário é por convite. Digite o código que a pessoa que te chamou enviou.</span>
-          <span class="err-msg" id="codigo-err">Código de acesso incorreto. Confira o código do seu convite.</span>
-        </div>
+          <!-- ======== PASSO 1 · SOBRE VOCÊ ======== -->
+          <section class="step active" data-step="1" data-stage="1">
+            <div class="sec-head">
+              <span class="sec-no" aria-hidden="true">01</span>
+              <div class="sec-htext">
+                <h2 class="sec-title">Sobre você</h2>
+                <p class="sec-desc">Só o básico para o mentor saber com quem está falando e devolver o seu PDI.</p>
+              </div>
+            </div>
 
-        <div class="grid-2">
-          <div class="field" data-field>
-            <label for="nome">Nome completo<span class="req" aria-hidden="true">*</span></label>
-            <input class="input" id="nome" name="nome" type="text" autocomplete="name" placeholder="Nome e sobrenome" required>
-            <span class="err-msg">Conta pra gente como você se chama.</span>
-          </div>
-          <div class="field" data-field>
-            <label for="email">E-mail corporativo<span class="req" aria-hidden="true">*</span></label>
-            <input class="input" id="email" name="email" type="email" autocomplete="email" placeholder="voce@empresa.com" required>
-            <span class="err-msg">Precisa de um e-mail válido para devolver o PDI.</span>
-          </div>
-        </div>
+            <div class="field" data-field>
+              <label for="codigo">Código de acesso<span class="req" aria-hidden="true">*</span></label>
+              <input class="input" id="codigo" name="codigo" type="text" autocomplete="off" placeholder="O código que você recebeu no convite">
+              <span class="helper">Este formulário é por convite. Digite o código que a pessoa que te chamou enviou.</span>
+              <span class="err-msg" id="codigo-err">Código de acesso incorreto. Confira o código do seu convite.</span>
+            </div>
 
-        <div class="field">
-          <label for="cliente">Cliente ou projeto de atuação</label>
-          <input class="input" id="cliente" name="cliente" type="text" placeholder="Ex.: Banco X — squad de Pagamentos">
-        </div>
+            <div class="grid-2">
+              <div class="field" data-field>
+                <label for="nome">Nome completo<span class="req" aria-hidden="true">*</span></label>
+                <input class="input" id="nome" name="nome" type="text" autocomplete="name" placeholder="Nome e sobrenome" required>
+                <span class="err-msg">Conta pra gente como você se chama.</span>
+              </div>
+              <div class="field" data-field>
+                <label for="email">E-mail corporativo<span class="req" aria-hidden="true">*</span></label>
+                <input class="input" id="email" name="email" type="email" autocomplete="email" placeholder="voce@empresa.com" required>
+                <span class="err-msg">Precisa de um e-mail válido para devolver o PDI.</span>
+              </div>
+            </div>
 
-        <label class="consent" id="consent-box" data-consent>
-          <input type="checkbox" name="consent" id="consent" required>
-          <span class="ct">Autorizo o uso das minhas respostas para a elaboração do meu Plano de Desenvolvimento Individual. As informações ficam restritas a mim e à área de RH de Desenvolvimento e <strong>não definem promoção nem remuneração</strong>. Posso pular qualquer pergunta.<span class="lgpd">LGPD</span></span>
-        </label>
-        <span class="err-msg" id="consent-err" style="margin-top:10px">Precisamos do seu ok para seguir.</span>
-      </section>
+            <div class="field">
+              <label for="cliente">Cliente ou projeto de atuação</label>
+              <input class="input" id="cliente" name="cliente" type="text" placeholder="Ex.: Banco X, squad de Pagamentos">
+            </div>
 
-      <!-- ============ SEÇÃO 02 · PERFIL ============ -->
-      <section class="sec">
-        <div class="sec-head">
-          <span class="sec-no" aria-hidden="true">02</span>
-          <div class="sec-htext">
-            <h2 class="sec-title">Seu perfil hoje</h2>
-            <p class="sec-desc">O ponto de partida da análise — não um veredito. Um retrato rápido de onde você está e do que faz no dia a dia.</p>
-          </div>
-        </div>
-
-        <fieldset class="opts" data-field-radio>
-          <legend>Como você descreveria sua senioridade hoje?<span class="req" aria-hidden="true">*</span><span class="legend-help">Selecione a opção que melhor representa seu momento hoje.</span></legend>
-          <div class="opt-grid">
-            <label class="opt">
-              <input type="radio" name="senioridade" value="Trainee" class="sr-only" required>
-              <span class="opt-check" aria-hidden="true"></span>
-              <span class="opt-body"><span class="opt-title">Trainee</span><span class="opt-desc">Aprendendo os fundamentos</span></span>
+            <label class="consent" id="consent-box" data-consent>
+              <input type="checkbox" name="consent" id="consent" required>
+              <span class="ct">Autorizo o uso das minhas respostas para a elaboração do meu Plano de Desenvolvimento Individual. As informações ficam restritas a mim e à área de RH de Desenvolvimento e <strong>não definem promoção nem remuneração</strong>. Posso pular qualquer pergunta.<span class="lgpd">LGPD</span></span>
             </label>
-            <label class="opt">
-              <input type="radio" name="senioridade" value="Júnior" class="sr-only" required>
-              <span class="opt-check" aria-hidden="true"></span>
-              <span class="opt-body"><span class="opt-title">Júnior</span><span class="opt-desc">Autonomia em tarefas básicas</span></span>
-            </label>
-            <label class="opt">
-              <input type="radio" name="senioridade" value="Pleno" class="sr-only" required>
-              <span class="opt-check" aria-hidden="true"></span>
-              <span class="opt-body"><span class="opt-title">Pleno</span><span class="opt-desc">Resolvo com independência</span></span>
-            </label>
-            <label class="opt">
-              <input type="radio" name="senioridade" value="Sênior" class="sr-only" required>
-              <span class="opt-check" aria-hidden="true"></span>
-              <span class="opt-body"><span class="opt-title">Sênior</span><span class="opt-desc">Lidero e oriento outras pessoas</span></span>
-            </label>
-          </div>
-          <span class="err-msg">Escolha a opção mais próxima de você.</span>
-        </fieldset>
+            <span class="err-msg" id="consent-err" style="margin-top:10px">Precisamos do seu ok para seguir.</span>
+          </section>
 
-        <div class="field">
-          <label for="stack">Stack e ferramentas do cliente atual</label>
-          <input class="input" id="stack" name="stack" type="text" placeholder="Ex.: Cypress, Java, Postman, Jira, SQL">
-          <span class="helper">Linguagens, frameworks e tudo que faz parte do seu dia a dia. É daqui que saem os pontos técnicos do plano.</span>
+          <!-- ======== PASSO 2 · PERFIL ======== -->
+          <section class="step" data-step="2" data-stage="2">
+            <div class="sec-head">
+              <span class="sec-no" aria-hidden="true">02</span>
+              <div class="sec-htext">
+                <h2 class="sec-title">Seu perfil hoje</h2>
+                <p class="sec-desc">O ponto de partida da análise, não um veredito. Um retrato rápido de onde você está e do que faz no dia a dia.</p>
+              </div>
+            </div>
+
+            <fieldset class="opts" data-field-radio>
+              <legend>Como você descreveria sua senioridade hoje?<span class="req" aria-hidden="true">*</span><span class="legend-help">Selecione a opção que melhor representa seu momento hoje.</span></legend>
+              <div class="opt-grid">
+                <label class="opt">
+                  <input type="radio" name="senioridade" value="Trainee" class="sr-only" required>
+                  <span class="opt-check" aria-hidden="true"></span>
+                  <span class="opt-body"><span class="opt-title">Trainee</span><span class="opt-desc">Aprendendo os fundamentos</span></span>
+                </label>
+                <label class="opt">
+                  <input type="radio" name="senioridade" value="Júnior" class="sr-only" required>
+                  <span class="opt-check" aria-hidden="true"></span>
+                  <span class="opt-body"><span class="opt-title">Júnior</span><span class="opt-desc">Autonomia em tarefas básicas</span></span>
+                </label>
+                <label class="opt">
+                  <input type="radio" name="senioridade" value="Pleno" class="sr-only" required>
+                  <span class="opt-check" aria-hidden="true"></span>
+                  <span class="opt-body"><span class="opt-title">Pleno</span><span class="opt-desc">Resolvo com independência</span></span>
+                </label>
+                <label class="opt">
+                  <input type="radio" name="senioridade" value="Sênior" class="sr-only" required>
+                  <span class="opt-check" aria-hidden="true"></span>
+                  <span class="opt-body"><span class="opt-title">Sênior</span><span class="opt-desc">Lidero e oriento outras pessoas</span></span>
+                </label>
+              </div>
+              <span class="err-msg">Escolha a opção mais próxima de você.</span>
+            </fieldset>
+
+            <div class="field">
+              <label for="stack">Stack e ferramentas do cliente atual</label>
+              <input class="input" id="stack" name="stack" type="text" placeholder="Ex.: Cypress, Java, Postman, Jira, SQL">
+              <span class="helper">Linguagens, frameworks e tudo que faz parte do seu dia a dia. É daqui que saem os pontos técnicos do plano.</span>
+            </div>
+
+            <fieldset class="opts" style="margin-bottom:20px">
+              <legend>Que tipos de teste você faz hoje?<span class="legend-help">Pode marcar mais de um.</span></legend>
+              <div class="chk-grid">
+                <label class="chk"><input type="checkbox" name="tipos_teste" value="Teste manual"><span class="tick" aria-hidden="true"></span>Teste manual</label>
+                <label class="chk"><input type="checkbox" name="tipos_teste" value="Automação web"><span class="tick" aria-hidden="true"></span>Automação web</label>
+                <label class="chk"><input type="checkbox" name="tipos_teste" value="Teste de API"><span class="tick" aria-hidden="true"></span>Teste de API</label>
+                <label class="chk"><input type="checkbox" name="tipos_teste" value="Teste mobile"><span class="tick" aria-hidden="true"></span>Teste mobile</label>
+                <label class="chk"><input type="checkbox" name="tipos_teste" value="Teste de performance"><span class="tick" aria-hidden="true"></span>Teste de performance</label>
+                <label class="chk"><input type="checkbox" name="tipos_teste" id="chk-outro" value="Outro"><span class="tick" aria-hidden="true"></span>Outro</label>
+              </div>
+              <div class="outro-wrap" id="outro-wrap">
+                <label class="sr-only" for="tipos_teste_outro">Qual outro tipo de teste você faz?</label>
+                <input class="input" id="tipos_teste_outro" name="tipos_teste_outro" type="text" placeholder="Qual? Ex.: acessibilidade, teste de carga, segurança, exploratório…">
+              </div>
+            </fieldset>
+
+            <div class="field">
+              <label for="responsabilidades" class="q">Além de executar testes, o que mais é seu no dia a dia?</label>
+              <textarea class="input" id="responsabilidades" name="responsabilidades" rows="3" placeholder="Ex.: escrevo cenários BDD, faço code review, cuido do CI/CD, dou suporte ao time de dev…"></textarea>
+            </div>
+
+            <div class="field">
+              <label for="estudos" class="q">Nos últimos 6 meses, estudou algo de QA por conta própria?</label>
+              <textarea class="input" id="estudos" name="estudos" rows="3" placeholder="Cursos, vídeos, tutoriais, certificações… ou 'nada', sem problema. Isso evita sugerir o que você já domina."></textarea>
+            </div>
+
+            <div class="field">
+              <label for="feedback" class="q">Recebeu algum feedback técnico recente?</label>
+              <textarea class="input" id="feedback" name="feedback" rows="3" placeholder="De avaliação, do tech lead, de um PR, ou até um comentário informal. Se não teve, escreva 'não'."></textarea>
+              <span class="helper">Ajuda o plano a não ignorar nada que já foi sinalizado pra você.</span>
+            </div>
+          </section>
+
+          <!-- ======== PASSO 3 · OBJETIVOS ======== -->
+          <section class="step" data-step="3" data-stage="3">
+            <div class="sec-head">
+              <span class="sec-no" aria-hidden="true">03</span>
+              <div class="sec-htext">
+                <h2 class="sec-title">Para onde você quer ir</h2>
+                <p class="sec-desc">O plano é construído em cima do seu objetivo, então capriche aqui.</p>
+              </div>
+            </div>
+
+            <div class="field" data-field>
+              <label for="objetivo" class="q">Qual é o seu principal objetivo de carreira para os próximos 3 meses?<span class="req" aria-hidden="true">*</span></label>
+              <textarea class="input" id="objetivo" name="objetivo" rows="4" placeholder="Tente ser específico: 'entrar em automação', 'evoluir para pleno', 'aprender teste de API', 'dominar BDD'…" required></textarea>
+              <span class="err-msg">Conta pra gente o que você quer alcançar. É o coração do plano.</span>
+            </div>
+
+            <div class="field">
+              <label for="motivacao" class="q">Por que esse objetivo é importante pra você agora?</label>
+              <textarea class="input" id="motivacao" name="motivacao" rows="3" placeholder="Está ligado ao projeto atual, à evolução salarial, a uma mudança de área, a algo pessoal?"></textarea>
+            </div>
+
+            <fieldset class="opts" data-field-radio style="margin-bottom:20px">
+              <legend>Quanto tempo por semana você consegue dedicar a estudo?<span class="req" aria-hidden="true">*</span><span class="legend-help">De forma realista, considerando sua rotina no cliente.</span></legend>
+              <div class="opt-grid">
+                <label class="opt">
+                  <input type="radio" name="horas" value="Menos de 2h/semana" class="sr-only" required>
+                  <span class="opt-check" aria-hidden="true"></span>
+                  <span class="opt-body"><span class="opt-title">Menos de 2h</span><span class="opt-desc">Por semana</span></span>
+                </label>
+                <label class="opt">
+                  <input type="radio" name="horas" value="De 2h a 4h/semana" class="sr-only" required>
+                  <span class="opt-check" aria-hidden="true"></span>
+                  <span class="opt-body"><span class="opt-title">2h a 4h</span><span class="opt-desc">Por semana</span></span>
+                </label>
+                <label class="opt">
+                  <input type="radio" name="horas" value="De 4h a 6h/semana" class="sr-only" required>
+                  <span class="opt-check" aria-hidden="true"></span>
+                  <span class="opt-body"><span class="opt-title">4h a 6h</span><span class="opt-desc">Por semana</span></span>
+                </label>
+                <label class="opt">
+                  <input type="radio" name="horas" value="Mais de 6h/semana" class="sr-only" required>
+                  <span class="opt-check" aria-hidden="true"></span>
+                  <span class="opt-body"><span class="opt-title">Mais de 6h</span><span class="opt-desc">Por semana</span></span>
+                </label>
+              </div>
+              <span class="err-msg">Escolha a faixa que combina com a sua rotina.</span>
+            </fieldset>
+
+            <div class="field">
+              <label for="demanda" class="q">Existe alguma demanda do projeto ou do RH que o plano deva contemplar?</label>
+              <textarea class="input" id="demanda" name="demanda" rows="3" placeholder="Ex.: 'o cliente vai exigir testes de API', 'o time precisa de alguém em CI/CD'. Se não souber, tudo bem deixar em branco."></textarea>
+            </div>
+          </section>
+
+          <!-- ======== PASSOS 4 a 13 · SITUAÇÕES (uma por página) ======== -->
+          <section class="step" data-step="4" data-stage="4">
+            <div class="sec-head">
+              <span class="sec-no" aria-hidden="true">04</span>
+              <div class="sec-htext">
+                <h2 class="sec-title">Como você pensa na prática</h2>
+                <p class="sec-desc">São 10 situações do dia a dia, uma por vez. Não há resposta certa ou errada: o objetivo é compreender seu raciocínio. Uma resposta honesta e curta vale mais que um texto decorado.</p>
+              </div>
+            </div>
+            <div class="field" data-field>
+              <label for="situacao1" class="q">1. Você recebe uma demanda com a documentação incompleta e o prazo é curto. Como você conduz essa situação?<span class="req" aria-hidden="true">*</span></label>
+              <textarea class="input" id="situacao1" name="situacao1" rows="6" placeholder="Pode ser em tópicos ou texto corrido, do seu jeito." required></textarea>
+              <span class="err-msg">Conta como você agiria nessa situação.</span>
+            </div>
+          </section>
+
+          <section class="step" data-step="5" data-stage="4">
+            <div class="field" data-field>
+              <label for="situacao3" class="q">2. O que não pode faltar em um plano de testes bem feito?<span class="req" aria-hidden="true">*</span></label>
+              <textarea class="input" id="situacao3" name="situacao3" rows="6" placeholder="O que você considera essencial." required></textarea>
+              <span class="err-msg">Conta o que você considera essencial.</span>
+            </div>
+          </section>
+
+          <section class="step" data-step="6" data-stage="4">
+            <div class="field" data-field>
+              <label for="situacao5" class="q">3. Você encontrou um bug. Como você registra?<span class="req" aria-hidden="true">*</span></label>
+              <textarea class="input" id="situacao5" name="situacao5" rows="6" placeholder="Descreva como você faria o registro." required></textarea>
+              <span class="err-msg">Conta como você registraria.</span>
+            </div>
+          </section>
+
+          <section class="step" data-step="7" data-stage="4">
+            <div class="field" data-field>
+              <label for="situacao6" class="q">4. Na véspera da entrega, você encontra um bug crítico no fluxo de pagamento. O que você faz?<span class="req" aria-hidden="true">*</span></label>
+              <textarea class="input" id="situacao6" name="situacao6" rows="6" placeholder="Descreva o seu passo a passo." required></textarea>
+              <span class="err-msg">Conta o que você faria nessa hora.</span>
+            </div>
+          </section>
+
+          <section class="step" data-step="8" data-stage="4">
+            <div class="field" data-field>
+              <label for="situacao8" class="q">5. Que cuidados você teria ao testar um sistema legado que ninguém sabe explicar direito?<span class="req" aria-hidden="true">*</span></label>
+              <textarea class="input" id="situacao8" name="situacao8" rows="6" placeholder="Descreva sua abordagem." required></textarea>
+              <span class="err-msg">Conta como você lidaria com isso.</span>
+            </div>
+          </section>
+
+          <section class="step" data-step="9" data-stage="4">
+            <div class="field" data-field>
+              <label for="situacao2" class="q">6. Como você organiza sua rotina de testes no dia a dia?<span class="req" aria-hidden="true">*</span></label>
+              <textarea class="input" id="situacao2" name="situacao2" rows="6" placeholder="Do seu jeito." required></textarea>
+              <span class="err-msg">Conta como você organiza sua rotina.</span>
+            </div>
+          </section>
+
+          <section class="step" data-step="10" data-stage="4">
+            <div class="field" data-field>
+              <label for="situacao4" class="q">7. Como você escreve um bom caso de teste?<span class="req" aria-hidden="true">*</span></label>
+              <textarea class="input" id="situacao4" name="situacao4" rows="6" placeholder="Do seu jeito." required></textarea>
+              <span class="err-msg">Conta como você escreveria.</span>
+            </div>
+          </section>
+
+          <section class="step" data-step="11" data-stage="4">
+            <div class="field" data-field>
+              <label for="situacao7" class="q">8. O cliente quer seguir com a implantação mesmo tendo bugs abertos. Como você age?<span class="req" aria-hidden="true">*</span></label>
+              <textarea class="input" id="situacao7" name="situacao7" rows="6" placeholder="Do seu jeito." required></textarea>
+              <span class="err-msg">Conta como você agiria.</span>
+            </div>
+          </section>
+
+          <section class="step" data-step="12" data-stage="4">
+            <div class="field" data-field>
+              <label for="situacao9" class="q">9. Como você comunica um bloqueio que está impedindo seus testes?<span class="req" aria-hidden="true">*</span></label>
+              <textarea class="input" id="situacao9" name="situacao9" rows="6" placeholder="Do seu jeito." required></textarea>
+              <span class="err-msg">Conta como você comunicaria.</span>
+            </div>
+          </section>
+
+          <section class="step" data-step="13" data-stage="4">
+            <div class="field" data-field>
+              <label for="situacao10" class="q">10. Como você agiria para melhorar um time que não tem processo claro de QA?<span class="req" aria-hidden="true">*</span></label>
+              <textarea class="input" id="situacao10" name="situacao10" rows="6" placeholder="Do seu jeito." required></textarea>
+              <span class="err-msg">Conta como você agiria.</span>
+            </div>
+          </section>
+
+          <!-- ======== SUCESSO (passo final, após envio) ======== -->
+          <section class="step" data-step="done">
+            <div class="sucesso" id="sucesso">
+              <div class="sucesso-head">
+                <span class="sucesso-badge" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>
+                <div>
+                  <h3 id="sucesso-titulo">Respostas registradas.</h3>
+                  <p id="sucesso-msg">Segue o resumo para cópia. Seu PDI de 3 meses será encaminhado após a análise do mentor.</p>
+                </div>
+              </div>
+              <textarea class="input resumo" id="resumo" readonly rows="12" aria-label="Resumo copiável das suas respostas"></textarea>
+              <button type="button" class="btn btn-ghost" id="copiar" data-label="Copiar minhas respostas">Copiar minhas respostas</button>
+              <p class="foot">Mentor QA · Programa de Desenvolvimento de Pessoas · Documento de uso interno. Dados tratados conforme a LGPD (Lei nº 13.709/2018).</p>
+            </div>
+          </section>
+
         </div>
-
-        <fieldset class="opts" style="margin-bottom:20px">
-          <legend>Que tipos de teste você faz hoje?<span class="legend-help">Pode marcar mais de um.</span></legend>
-          <div class="chk-grid">
-            <label class="chk"><input type="checkbox" name="tipos_teste" value="Teste manual"><span class="tick" aria-hidden="true"></span>Teste manual</label>
-            <label class="chk"><input type="checkbox" name="tipos_teste" value="Automação web"><span class="tick" aria-hidden="true"></span>Automação web</label>
-            <label class="chk"><input type="checkbox" name="tipos_teste" value="Teste de API"><span class="tick" aria-hidden="true"></span>Teste de API</label>
-            <label class="chk"><input type="checkbox" name="tipos_teste" value="Teste mobile"><span class="tick" aria-hidden="true"></span>Teste mobile</label>
-            <label class="chk"><input type="checkbox" name="tipos_teste" value="Teste de performance"><span class="tick" aria-hidden="true"></span>Teste de performance</label>
-            <label class="chk"><input type="checkbox" name="tipos_teste" value="Outro"><span class="tick" aria-hidden="true"></span>Outro</label>
-          </div>
-        </fieldset>
-
-        <div class="field">
-          <label for="responsabilidades" class="q">Além de executar testes, o que mais é seu no dia a dia?</label>
-          <textarea class="input" id="responsabilidades" name="responsabilidades" rows="3" placeholder="Ex.: escrevo cenários BDD, faço code review, cuido do CI/CD, dou suporte ao time de dev…"></textarea>
-        </div>
-
-        <div class="field">
-          <label for="estudos" class="q">Nos últimos 6 meses, estudou algo de QA por conta própria?</label>
-          <textarea class="input" id="estudos" name="estudos" rows="3" placeholder="Cursos, vídeos, tutoriais, certificações… ou 'nada' — sem problema. Isso evita sugerir o que você já domina."></textarea>
-        </div>
-
-        <div class="field">
-          <label for="feedback" class="q">Recebeu algum feedback técnico recente?</label>
-          <textarea class="input" id="feedback" name="feedback" rows="3" placeholder="De avaliação, do tech lead, de um PR, ou até um comentário informal. Se não teve, escreva 'não'."></textarea>
-          <span class="helper">Ajuda o plano a não ignorar nada que já foi sinalizado pra você.</span>
-        </div>
-      </section>
-
-      <!-- ============ SEÇÃO 03 · OBJETIVOS ============ -->
-      <section class="sec">
-        <div class="sec-head">
-          <span class="sec-no" aria-hidden="true">03</span>
-          <div class="sec-htext">
-            <h2 class="sec-title">Para onde você quer ir</h2>
-            <p class="sec-desc">O plano é construído em cima do seu objetivo — então capriche aqui.</p>
-          </div>
-        </div>
-
-        <div class="field" data-field>
-          <label for="objetivo" class="q">Qual é o seu principal objetivo de carreira para os próximos 3 meses?<span class="req" aria-hidden="true">*</span></label>
-          <textarea class="input" id="objetivo" name="objetivo" rows="4" placeholder="Tente ser específico: 'entrar em automação', 'evoluir para pleno', 'aprender teste de API', 'dominar BDD'…" required></textarea>
-          <span class="err-msg">Conta pra gente o que você quer alcançar — é o coração do plano.</span>
-        </div>
-
-        <div class="field">
-          <label for="motivacao" class="q">Por que esse objetivo é importante pra você agora?</label>
-          <textarea class="input" id="motivacao" name="motivacao" rows="3" placeholder="Está ligado ao projeto atual, à evolução salarial, a uma mudança de área, a algo pessoal?"></textarea>
-        </div>
-
-        <fieldset class="opts" data-field-radio style="margin-bottom:20px">
-          <legend>Quanto tempo por semana você consegue dedicar a estudo?<span class="req" aria-hidden="true">*</span><span class="legend-help">De forma realista, considerando sua rotina no cliente.</span></legend>
-          <div class="opt-grid">
-            <label class="opt">
-              <input type="radio" name="horas" value="Menos de 2h/semana" class="sr-only" required>
-              <span class="opt-check" aria-hidden="true"></span>
-              <span class="opt-body"><span class="opt-title">Menos de 2h</span><span class="opt-desc">Por semana</span></span>
-            </label>
-            <label class="opt">
-              <input type="radio" name="horas" value="De 2h a 4h/semana" class="sr-only" required>
-              <span class="opt-check" aria-hidden="true"></span>
-              <span class="opt-body"><span class="opt-title">2h a 4h</span><span class="opt-desc">Por semana</span></span>
-            </label>
-            <label class="opt">
-              <input type="radio" name="horas" value="De 4h a 6h/semana" class="sr-only" required>
-              <span class="opt-check" aria-hidden="true"></span>
-              <span class="opt-body"><span class="opt-title">4h a 6h</span><span class="opt-desc">Por semana</span></span>
-            </label>
-            <label class="opt">
-              <input type="radio" name="horas" value="Mais de 6h/semana" class="sr-only" required>
-              <span class="opt-check" aria-hidden="true"></span>
-              <span class="opt-body"><span class="opt-title">Mais de 6h</span><span class="opt-desc">Por semana</span></span>
-            </label>
-          </div>
-          <span class="err-msg">Escolha a faixa que combina com a sua rotina.</span>
-        </fieldset>
-
-        <div class="field">
-          <label for="demanda" class="q">Existe alguma demanda do projeto ou do RH que o plano deva contemplar?</label>
-          <textarea class="input" id="demanda" name="demanda" rows="3" placeholder="Ex.: 'o cliente vai exigir testes de API', 'o time precisa de alguém em CI/CD'. Se não souber, tudo bem deixar em branco."></textarea>
-        </div>
-      </section>
-
-      <!-- ============ SEÇÃO 04 · SITUAÇÕES NÚCLEO ============ -->
-      <section class="sec">
-        <div class="sec-head">
-          <span class="sec-no" aria-hidden="true">04</span>
-          <div class="sec-htext">
-            <h2 class="sec-title">Como você pensa na prática</h2>
-            <p class="sec-desc">São 10 situações do dia a dia. Responda todas com as suas palavras — não há resposta certa ou errada, o objetivo é compreender seu raciocínio. Uma resposta honesta e curta vale mais que um texto decorado.</p>
-          </div>
-        </div>
-
-        <div class="field" data-field>
-          <label for="situacao1" class="q">1. Você recebe uma demanda com a documentação incompleta e o prazo é curto. Como você conduz essa situação?<span class="req" aria-hidden="true">*</span></label>
-          <textarea class="input" id="situacao1" name="situacao1" rows="5" placeholder="Pode ser em tópicos ou texto corrido — do seu jeito." required></textarea>
-          <span class="err-msg">Conta como você agiria nessa situação.</span>
-        </div>
-
-        <div class="field" data-field>
-          <label for="situacao3" class="q">2. O que não pode faltar em um plano de testes bem feito?<span class="req" aria-hidden="true">*</span></label>
-          <textarea class="input" id="situacao3" name="situacao3" rows="5" placeholder="O que você considera essencial." required></textarea>
-          <span class="err-msg">Conta o que você considera essencial.</span>
-        </div>
-
-        <div class="field" data-field>
-          <label for="situacao5" class="q">3. Você encontrou um bug. Como você registra?<span class="req" aria-hidden="true">*</span></label>
-          <textarea class="input" id="situacao5" name="situacao5" rows="5" placeholder="Descreva como você faria o registro." required></textarea>
-          <span class="err-msg">Conta como você registraria.</span>
-        </div>
-
-        <div class="field" data-field>
-          <label for="situacao6" class="q">4. Na véspera da entrega, você encontra um bug crítico no fluxo de pagamento. O que você faz?<span class="req" aria-hidden="true">*</span></label>
-          <textarea class="input" id="situacao6" name="situacao6" rows="5" placeholder="Descreva o seu passo a passo." required></textarea>
-          <span class="err-msg">Conta o que você faria nessa hora.</span>
-        </div>
-
-        <div class="field" data-field>
-          <label for="situacao8" class="q">5. Que cuidados você teria ao testar um sistema legado que ninguém sabe explicar direito?<span class="req" aria-hidden="true">*</span></label>
-          <textarea class="input" id="situacao8" name="situacao8" rows="5" placeholder="Descreva sua abordagem." required></textarea>
-          <span class="err-msg">Conta como você lidaria com isso.</span>
-        </div>
-
-        <div class="field" data-field>
-          <label for="situacao2" class="q">6. Como você organiza sua rotina de testes no dia a dia?<span class="req" aria-hidden="true">*</span></label>
-          <textarea class="input" id="situacao2" name="situacao2" rows="5" placeholder="Do seu jeito." required></textarea>
-          <span class="err-msg">Conta como você organiza sua rotina.</span>
-        </div>
-
-        <div class="field" data-field>
-          <label for="situacao4" class="q">7. Como você escreve um bom caso de teste?<span class="req" aria-hidden="true">*</span></label>
-          <textarea class="input" id="situacao4" name="situacao4" rows="5" placeholder="Do seu jeito." required></textarea>
-          <span class="err-msg">Conta como você escreveria.</span>
-        </div>
-
-        <div class="field" data-field>
-          <label for="situacao7" class="q">8. O cliente quer seguir com a implantação mesmo tendo bugs abertos. Como você age?<span class="req" aria-hidden="true">*</span></label>
-          <textarea class="input" id="situacao7" name="situacao7" rows="5" placeholder="Do seu jeito." required></textarea>
-          <span class="err-msg">Conta como você agiria.</span>
-        </div>
-
-        <div class="field" data-field>
-          <label for="situacao9" class="q">9. Como você comunica um bloqueio que está impedindo seus testes?<span class="req" aria-hidden="true">*</span></label>
-          <textarea class="input" id="situacao9" name="situacao9" rows="5" placeholder="Do seu jeito." required></textarea>
-          <span class="err-msg">Conta como você comunicaria.</span>
-        </div>
-
-        <div class="field" data-field>
-          <label for="situacao10" class="q">10. Como você agiria para melhorar um time que não tem processo claro de QA?<span class="req" aria-hidden="true">*</span></label>
-          <textarea class="input" id="situacao10" name="situacao10" rows="5" placeholder="Do seu jeito." required></textarea>
-          <span class="err-msg">Conta como você agiria.</span>
-        </div>
-      </section>
-
-      <!-- ============ ENVIO ============ -->
-      <div class="submit-row">
-        <p class="submit-note">Ao enviar, você recebe um <strong>resumo copiável</strong> de todas as respostas — para guardar ou levar à conversa com o mentor.</p>
-        <button type="submit" class="btn btn-primary" id="btn-enviar">
-          <span class="spinner" aria-hidden="true"></span>
-          <span class="btn-label">Enviar e receber meu PDI</span>
-          <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
-        </button>
       </div>
-      <div class="form-error" id="form-error" role="alert"></div>
 
-      <!-- ============ SUCESSO ============ -->
-      <div class="sucesso" id="sucesso" hidden>
-        <div class="sucesso-head">
-          <span class="sucesso-badge" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>
-          <div>
-            <h3 id="sucesso-titulo">Respostas registradas.</h3>
-            <p id="sucesso-msg">Segue o resumo para cópia. Seu PDI de 3 meses será encaminhado após a análise do mentor.</p>
+      <!-- ===================== RODAPÉ FIXO DE NAVEGAÇÃO ===================== -->
+      <nav class="navbar" id="navbar" aria-label="Navegação do formulário">
+        <div class="form-error" id="form-error" role="alert"></div>
+        <div class="navbar-inner">
+          <div class="nav-progress">
+            <span class="nav-progress-txt">Etapa <b id="nav-cur">1</b> de <b>13</b></span>
+            <div class="nav-bar-track"><span class="nav-bar-fill" id="nav-fill"></span></div>
+          </div>
+          <div class="nav-actions">
+            <button type="button" class="btn btn-back" id="btn-voltar" hidden>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"></path></svg>
+              Voltar
+            </button>
+            <button type="button" class="btn btn-primary" id="btn-proxima">
+              <span class="btn-label">Próxima</span>
+              <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+            </button>
+            <button type="submit" class="btn btn-primary" id="btn-enviar" hidden>
+              <span class="spinner" aria-hidden="true"></span>
+              <span class="btn-label">Enviar e receber meu PDI</span>
+              <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+            </button>
           </div>
         </div>
-        <textarea class="input resumo" id="resumo" readonly rows="12" aria-label="Resumo copiável das suas respostas"></textarea>
-        <button type="button" class="btn btn-ghost" id="copiar" data-label="Copiar minhas respostas">Copiar minhas respostas</button>
-      </div>
+      </nav>
 
-      <p class="foot">Mentor QA · Programa de Desenvolvimento de Pessoas · Documento de uso interno. Dados tratados conforme a LGPD (Lei nº 13.709/2018).</p>
     </form>
   </main>
 </div>
@@ -511,7 +596,7 @@
   'use strict';
 
   // ============================================================
-  //  CONFIGURAÇÃO — cole aqui a URL do seu Apps Script (termina em /exec)
+  //  CONFIGURAÇÃO: cole aqui a URL do seu Apps Script (termina em /exec)
   //  Enquanto estiver com o valor COLE_AQUI, o formulário funciona em
   //  "modo offline": não envia para o Google, só mostra o resumo copiável.
   // ============================================================
@@ -551,96 +636,146 @@
     ['situacao10','S10 · melhorar time sem processo de QA']
   ];
 
-  // ---- Coleta todos os valores num objeto ----
-  function coletar(){
-    var d = {};
-    var sen = form.querySelector('input[name="senioridade"]:checked');
-    var hrs = form.querySelector('input[name="horas"]:checked');
-    d.senioridade = sen ? sen.value : '';
-    d.horas = hrs ? hrs.value : '';
-    var tipos = [];
-    form.querySelectorAll('input[name="tipos_teste"]:checked').forEach(function(c){ tipos.push(c.value); });
-    d.tipos_teste = tipos.join(', ');
-    ['nome','email','cliente','stack','responsabilidades','estudos','feedback',
-     'objetivo','motivacao','demanda',
-     'situacao1','situacao3','situacao5','situacao6','situacao8',
-     'situacao2','situacao4','situacao7','situacao9','situacao10'
-    ].forEach(function(id){ var el = byId(id); d[id] = el ? el.value.trim() : ''; });
-    d.consent = byId('consent').checked ? 'sim' : 'não';
-    d.codigo = (byId('codigo') && byId('codigo').value.trim()) || '';
-    return d;
+  // ================= WIZARD: navegação por passos =================
+  var steps = Array.prototype.slice.call(form.querySelectorAll('.step[data-step]'));
+  var TOTAL = 13;                 // passos preenchíveis (fora a tela de sucesso)
+  var current = 1;                // passo atual (1..13); 'done' após envio
+  var stepperLis = Array.prototype.slice.call(byId('stepper').querySelectorAll('li'));
+  var btnVoltar = byId('btn-voltar');
+  var btnProxima = byId('btn-proxima');
+  var btnEnviar = byId('btn-enviar');
+  var navCur = byId('nav-cur');
+  var navFill = byId('nav-fill');
+  var stCount = byId('st-count');
+
+  // Qual "stage" (01-04) cada passo pertence, para o stepper do painel.
+  function stageDoPasso(n){ return n <= 3 ? n : 4; }
+  // Qual nº de situação (1-10) o passo representa, se estiver na etapa 04.
+  function situacaoDoPasso(n){ return n >= 4 ? (n - 3) : 0; }
+
+  function passoEl(n){
+    return form.querySelector('.step[data-step="'+n+'"]');
   }
 
-  // ---- Monta o texto do resumo copiável ----
-  function montarResumo(d){
-    var linhas = ['DIAGNÓSTICO DE CARREIRA — QA', ''];
-    CAMPOS.forEach(function(par){
-      var v = d[par[0]];
-      linhas.push(par[1] + ': ' + (v ? v : '—'));
+  function atualizarStepper(){
+    var stage = stageDoPasso(current);
+    stepperLis.forEach(function(li){
+      var s = parseInt(li.getAttribute('data-stage'), 10);
+      li.classList.remove('on','done');
+      if(s < stage) li.classList.add('done');
+      else if(s === stage) li.classList.add('on');
     });
-    return linhas.join('\n');
+    // contador de situação na etapa 04
+    var sit = situacaoDoPasso(current);
+    if(sit > 0){
+      stCount.textContent = 'Situação ' + sit + ' de 10';
+      stCount.classList.add('show');
+    } else {
+      stCount.classList.remove('show');
+    }
   }
 
-  // ---- Validação dos campos obrigatórios ----
-  var OBRIGATORIOS_TEXTO = ['nome','email','objetivo',
-    'situacao1','situacao3','situacao5','situacao6','situacao8',
-    'situacao2','situacao4','situacao7','situacao9','situacao10'];
+  function atualizarNav(){
+    navCur.textContent = current;
+    navFill.style.width = ((current - 1) / (TOTAL - 1) * 100) + '%';
+    btnVoltar.hidden = (current === 1);
+    var ultimo = (current === TOTAL);
+    btnProxima.hidden = ultimo;
+    btnEnviar.hidden = !ultimo;
+  }
 
+  function irPara(n, direcao){
+    if(n < 1 || n > TOTAL) return;
+    var atual = passoEl(current);
+    var alvo = passoEl(n);
+    if(atual) atual.classList.remove('active','back');
+    current = n;
+    if(alvo){
+      alvo.classList.add('active');
+      if(direcao === 'back') alvo.classList.add('back');
+    }
+    atualizarStepper();
+    atualizarNav();
+    // sobe a área rolável e foca no primeiro campo da nova página
+    var stage = form.querySelector('.stage');
+    if(stage) stage.scrollTop = 0;
+    var foco = alvo ? alvo.querySelector('input:not([type=checkbox]):not([type=radio]),textarea,input[type=checkbox]') : null;
+    if(foco && foco.focus){ try{ foco.focus({preventScroll:true}); }catch(e){ foco.focus(); } }
+  }
+
+  // ---- Validação apenas do passo atual ----
   function limparErros(){
     form.querySelectorAll('.invalid').forEach(function(el){ el.classList.remove('invalid'); });
     byId('form-error').classList.remove('show');
   }
 
-  function validar(){
+  function validarPasso(n){
     limparErros();
+    var passo = passoEl(n);
+    if(!passo) return true;
     var problemas = [];
     var primeiroErro = null;
 
-    var elCod = byId('codigo');
-    if(!elCod || elCod.value.trim() !== ACCESS_CODE){
-      var wc = elCod ? elCod.closest('[data-field]') : null;
-      if(wc){ wc.classList.add('invalid'); if(!primeiroErro) primeiroErro = wc; }
-      problemas.push('codigo');
+    // código de acesso (só existe no passo 1)
+    var elCod = passo.querySelector('#codigo');
+    if(elCod){
+      if(elCod.value.trim() !== ACCESS_CODE){
+        var wc = elCod.closest('[data-field]');
+        if(wc){ wc.classList.add('invalid'); if(!primeiroErro) primeiroErro = wc; }
+        problemas.push('codigo');
+      }
     }
 
-    // textos obrigatórios
-    OBRIGATORIOS_TEXTO.forEach(function(id){
-      var el = byId(id);
-      if(!el || !el.value.trim()){
-        var wrap = el ? el.closest('[data-field]') : null;
+    // campos de texto obrigatórios do passo
+    passo.querySelectorAll('input[required], textarea[required]').forEach(function(el){
+      if(el.id === 'codigo') return; // já tratado acima
+      if(el.type === 'email'){
+        var val = el.value.trim();
+        if(!val || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)){
+          var we = el.closest('[data-field]');
+          if(we){ we.classList.add('invalid'); if(!primeiroErro) primeiroErro = we; }
+          problemas.push(el.id);
+        }
+        return;
+      }
+      if(!el.value.trim()){
+        var wrap = el.closest('[data-field]');
         if(wrap){ wrap.classList.add('invalid'); if(!primeiroErro) primeiroErro = wrap; }
-        problemas.push(id);
+        problemas.push(el.id);
       }
     });
-    // e-mail com cara de e-mail
-    var email = byId('email');
-    if(email && email.value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())){
-      var w = email.closest('[data-field]');
-      if(w){ w.classList.add('invalid'); if(!primeiroErro) primeiroErro = w; }
-      if(problemas.indexOf('email') === -1) problemas.push('email');
-    }
-    // radios obrigatórios
-    [['senioridade'],['horas']].forEach(function(r){
-      var checked = form.querySelector('input[name="'+r[0]+'"]:checked');
-      if(!checked){
-        var fs = form.querySelector('input[name="'+r[0]+'"]').closest('fieldset');
-        if(fs){ fs.classList.add('invalid'); if(!primeiroErro) primeiroErro = fs; }
-        problemas.push(r[0]);
+
+    // radios obrigatórios do passo
+    passo.querySelectorAll('fieldset[data-field-radio]').forEach(function(fs){
+      var algum = fs.querySelector('input[type=radio]');
+      if(algum && algum.hasAttribute('required')){
+        var nome = algum.name;
+        if(!fs.querySelector('input[name="'+nome+'"]:checked')){
+          fs.classList.add('invalid');
+          if(!primeiroErro) primeiroErro = fs;
+          problemas.push(nome);
+        }
       }
     });
-    // consentimento
-    if(!byId('consent').checked){
-      byId('consent-box').classList.add('invalid');
-      var ce = byId('consent-err'); if(ce){ ce.style.display = 'block'; }
-      if(!primeiroErro) primeiroErro = byId('consent-box');
-      problemas.push('consent');
-    } else {
-      var ce2 = byId('consent-err'); if(ce2){ ce2.style.display = 'none'; }
+
+    // consentimento (só no passo 1)
+    var consent = passo.querySelector('#consent');
+    if(consent){
+      if(!consent.checked){
+        byId('consent-box').classList.add('invalid');
+        var ce = byId('consent-err'); if(ce){ ce.style.display = 'block'; }
+        if(!primeiroErro) primeiroErro = byId('consent-box');
+        problemas.push('consent');
+      } else {
+        var ce2 = byId('consent-err'); if(ce2){ ce2.style.display = 'none'; }
+      }
     }
 
     if(problemas.length){
       var fe = byId('form-error');
-      fe.textContent = 'Faltou preencher alguns campos obrigatórios (marcados em vermelho acima). Dá uma olhada e tenta de novo.';
+      fe.textContent = problemas.indexOf('codigo') !== -1 && problemas.length === 1
+        ? 'Código de acesso incorreto. Confira o código do seu convite.'
+        : 'Faltou preencher os campos marcados em vermelho para continuar.';
       fe.classList.add('show');
       if(primeiroErro && primeiroErro.scrollIntoView){
         primeiroErro.scrollIntoView({behavior:'smooth', block:'center'});
@@ -650,37 +785,113 @@
     return true;
   }
 
-  // ---- Mostra a tela de sucesso ----
+  btnProxima.addEventListener('click', function(){
+    if(!validarPasso(current)) return;
+    irPara(current + 1, 'fwd');
+  });
+  btnVoltar.addEventListener('click', function(){
+    byId('form-error').classList.remove('show');
+    irPara(current - 1, 'back');
+  });
+
+  // Enter dentro de input de texto avança (textarea mantém quebra de linha)
+  form.addEventListener('keydown', function(e){
+    if(e.key === 'Enter' && e.target.tagName === 'INPUT' && e.target.type !== 'checkbox'){
+      e.preventDefault();
+      if(current < TOTAL){ if(validarPasso(current)) irPara(current + 1, 'fwd'); }
+      else { btnEnviar.click(); }
+    }
+  });
+
+  // ---- Campo "Outro" de tipos de teste ----
+  var chkOutro = byId('chk-outro');
+  var outroWrap = byId('outro-wrap');
+  var outroInput = byId('tipos_teste_outro');
+  chkOutro.addEventListener('change', function(){
+    if(chkOutro.checked){
+      outroWrap.classList.add('show');
+      if(outroInput.focus){ outroInput.focus(); }
+    } else {
+      outroWrap.classList.remove('show');
+      outroInput.value = '';
+    }
+  });
+
+  // ---- Coleta todos os valores num objeto ----
+  function coletar(){
+    var d = {};
+    var sen = form.querySelector('input[name="senioridade"]:checked');
+    var hrs = form.querySelector('input[name="horas"]:checked');
+    d.senioridade = sen ? sen.value : '';
+    d.horas = hrs ? hrs.value : '';
+    var tipos = [];
+    form.querySelectorAll('input[name="tipos_teste"]:checked').forEach(function(c){
+      if(c.value === 'Outro'){
+        var txt = outroInput.value.trim();
+        tipos.push(txt ? 'Outro: ' + txt : 'Outro');
+      } else {
+        tipos.push(c.value);
+      }
+    });
+    d.tipos_teste = tipos.join(', ');
+    ['nome','email','cliente','stack','responsabilidades','estudos','feedback',
+     'objetivo','motivacao','demanda',
+     'situacao1','situacao3','situacao5','situacao6','situacao8',
+     'situacao2','situacao4','situacao7','situacao9','situacao10'
+    ].forEach(function(id){ var el = byId(id); d[id] = el ? el.value.trim() : ''; });
+    d.tipos_teste_outro = outroInput.value.trim();
+    d.consent = byId('consent').checked ? 'sim' : 'não';
+    d.codigo = (byId('codigo') && byId('codigo').value.trim()) || '';
+    return d;
+  }
+
+  // ---- Monta o texto do resumo copiável ----
+  function montarResumo(d){
+    var linhas = ['DIAGNÓSTICO DE CARREIRA · QA', ''];
+    CAMPOS.forEach(function(par){
+      var v = d[par[0]];
+      linhas.push(par[1] + ': ' + (v ? v : '(não respondido)'));
+    });
+    return linhas.join('\n');
+  }
+
+  // ---- Mostra a tela de sucesso (passo final do wizard) ----
   function mostrarSucesso(texto, confirmado){
     byId('resumo').value = texto;
     var titulo = byId('sucesso-titulo');
     var msg = byId('sucesso-msg');
     if(confirmado){
       titulo.textContent = 'Recebido! Já está com a gente.';
-      msg.innerHTML = 'Suas respostas foram registradas com sucesso. Guardamos um resumo abaixo para você — o seu PDI de 3 meses volta em breve.';
+      msg.innerHTML = 'Suas respostas foram registradas com sucesso. Guardamos um resumo abaixo para você, e o seu PDI de 3 meses volta em breve.';
     } else {
-      titulo.textContent = 'Quase lá — copie o seu resumo.';
+      titulo.textContent = 'Quase lá, copie o seu resumo.';
       msg.innerHTML = '<span class="warn-inline">Não consegui confirmar o envio automático.</span> Sem problema: clique em copiar e mande o texto abaixo para o RH de desenvolvimento. Nada se perdeu.';
     }
-    var bloco = byId('sucesso');
-    bloco.hidden = false;
-    // esconde o botão de enviar depois do sucesso
-    byId('btn-enviar').style.display = 'none';
+    // esconde a barra de navegação e revela a tela de sucesso
+    var passoAtual = passoEl(current);
+    if(passoAtual) passoAtual.classList.remove('active');
+    var done = form.querySelector('.step[data-step="done"]');
+    if(done) done.classList.add('active');
+    byId('navbar').style.display = 'none';
+    // stepper: tudo concluído
+    stepperLis.forEach(function(li){ li.classList.remove('on'); li.classList.add('done'); });
+    stCount.classList.remove('show');
+    var stage = form.querySelector('.stage');
+    if(stage) stage.scrollTop = 0;
     var copiar = byId('copiar');
     if(copiar && copiar.focus){ copiar.focus(); }
-    if(bloco.scrollIntoView){ bloco.scrollIntoView({behavior:'smooth', block:'start'}); }
   }
 
   // ---- Envio ----
   form.addEventListener('submit', function(e){
     e.preventDefault();
-    if(!validar()) return;
+    if(!validarPasso(current)) return;
 
     var dados = coletar();
     dados.timestamp = new Date().toISOString();
     var resumo = montarResumo(dados);
 
-    var btn = byId('btn-enviar');
+    var btn = btnEnviar;
 
     // Modo offline: URL ainda não configurada → vai direto ao resumo
     if(!APPS_SCRIPT_URL || APPS_SCRIPT_URL.indexOf('COLE_AQUI') !== -1){
@@ -746,6 +957,10 @@
       var ce = byId('consent-err'); if(ce){ ce.style.display = 'none'; }
     }
   });
+
+  // estado inicial
+  atualizarStepper();
+  atualizarNav();
 })();
 </script>
 </body>
